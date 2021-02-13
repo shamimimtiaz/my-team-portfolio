@@ -1,0 +1,22 @@
+{
+  "name": "my-team-portfolio",
+  "version": "1.0.0",
+  "description": "Team information",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shamimimtiaz/my-team-portfolio.git"
+  },
+  "author": "Shamim",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/shamimimtiaz/my-team-portfolio/issues"
+  },
+  "homepage": "https://github.com/shamimimtiaz/my-team-portfolio#readme",
+  "dependencies": {
+    "inquirer": "^7.3.3"
+  }
+}

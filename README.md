@@ -71,5 +71,5 @@ MP4
 https://user-images.githubusercontent.com/75001492/107886606-d32a1180-6ece-11eb-8ba1-457b251f932f.mp4
 
 Contact Info: 
-Shamim IMtiaz
+Shamim Imtiaz
 km_si@ymail.com

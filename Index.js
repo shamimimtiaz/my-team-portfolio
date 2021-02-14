@@ -1,6 +1,12 @@
+// link to page creation
+const profileHTML = require('./src/profileHTML');
 
 //team portfolio
 const Manager = require('./lib/Manager');
+const Engineer = require('./lib/Engineer');
+const Intern = require('./lib/Intern'); 
+
+
 
 // node : inquirer and file system
 const fs = require ('fs');
@@ -56,8 +62,8 @@ const addManager = () => {
         type: 'input',
         name: 'officeNumber',
         message: "Please enter the manager's office Number!",
-        validate: contactNumber => {
-        if (contactNumber) {
+        validate: nameInput => {
+        if (nameInput) {
             return true;
             } else {
             console.log ("Please enter the manager's office number!");
@@ -105,8 +111,8 @@ return inquirer.prompt([
     type: 'input',
     name: 'id',
     message: "Please enter the employee's ID.",
-    validate: idInput => {
-        if (idInput) {
+    validate: nameInput => {
+        if (nameInput) {
             return true;
         } else {
             console.log ("Please enter the employee's ID!");
@@ -118,8 +124,8 @@ return inquirer.prompt([
     type: 'input',
     name: 'email',
     message: "Please enter the employee's Email.",
-    validate: contactNumber => {
-    if (contactNumber) {
+    validate: nameInput => {
+    if (nameInput) {
         return true;
         } else {
         console.log ("Please enter the employee's Email!");
@@ -131,8 +137,9 @@ return inquirer.prompt([
     type: 'input',
     name: 'github',
     message: "Please enter the employee's github username.",
-    validate: githubInput => {
-      if (githubInput) {
+    when: (input) => input.role === 'Engineer',
+    validate: nameInput => {
+      if (nameInput) {
         return true;
       } else {
         console.log("Please enter the employee's GitHub username!");
@@ -144,8 +151,9 @@ return inquirer.prompt([
     type: 'input',
     name: 'school',
     message: "Please enter the intern's school.",
-    validate: linkInput => {
-      if (linkInput) {
+    when: (input) => input.role ==='Intern',
+    validate: nameInput => {
+      if (nameInput) {
         return true;
       } else {
         console.log("Please enter the intern's school name!");
@@ -162,12 +170,12 @@ return inquirer.prompt([
 ])
 // info based on employee type
 .then (employeeInfo => {
-let {name, id, email, role, githubLink, school, confirmAddEmployee } = employeeInfo;
-let employee = new employeeInfo(name, id, email, role, githubLink, school, confirmAddEmployee);
+let {name, id, email, role, github, school, confirmAddEmployee } = employeeInfo;
+let employee;
 
 
     if (role === "Engineer") {
-    employee = new Engineer (name, id, email, githubLink);
+    employee = new Engineer (name, id, email, github);
     console.log(employee);
 }   else if (role === "Intern") {
     employee = new Intern (name, id, email, school);
@@ -201,7 +209,7 @@ const writeFile = data => {
 addManager()
 .then (addEmployee)
 .then (allEmployees => {
-    return teamHTML(allEmployees);
+    return profileHTML(allEmployees);
 })
 .then(pageHTML => {
     return writeFile(pageHTML);

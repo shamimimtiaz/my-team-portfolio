@@ -21,7 +21,7 @@ test('get employee ID', () => {
 
 //get email from getEmail
 test('get employee email', () => {
-    expect(employee.getEmail()).toEqual(expect.any(String));
+    expect(employee.getEmail()).toEqual(expect.stringContaining(employee.email.toString()));
 });
 
 //get role from getRole
